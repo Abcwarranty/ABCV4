@@ -1,0 +1,145 @@
+/**
+ * Mobile-specific styles for Architects Certificate theme
+ */
+
+/* Base mobile improvements */
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Fix for iOS momentum scrolling */
+.site {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Improved tap targets for mobile */
+.touch a,
+.touch button,
+.touch input[type="button"],
+.touch input[type="submit"] {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+/* Fix for iOS input styling */
+.is-ios input,
+.is-ios textarea,
+.is-ios select {
+  -webkit-appearance: none;
+  border-radius: 0.375rem;
+  font-size: 16px !important; /* Prevents zoom on focus */
+}
+
+/* Fix for iOS fixed positioning */
+.is-ios .fixed {
+  -webkit-transform: translateZ(0);
+}
+
+/* Android-specific fixes */
+.is-android input:focus {
+  outline-offset: 2px;
+}
+
+/* Mobile hero section adjustments */
+@media (max-width: 640px) {
+  .hero-gradient {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+
+  .hero-content h1 {
+    font-size: 2rem !important;
+    line-height: 1.2 !important;
+  }
+
+  .hero-features {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+}
+
+/* Mobile services section adjustments */
+@media (max-width: 640px) {
+  .service-card {
+    padding: 1rem;
+  }
+}
+
+/* Mobile testimonials adjustments */
+@media (max-width: 640px) {
+  .testimonial-card {
+    padding: 1rem;
+  }
+}
+
+/* Mobile CTA section adjustments */
+@media (max-width: 640px) {
+  #cta h2 {
+    font-size: 1.75rem !important;
+  }
+
+  #cta p {
+    font-size: 1rem !important;
+  }
+}
+
+/* Mobile footer adjustments */
+@media (max-width: 640px) {
+  .site-footer {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+
+  .footer-column {
+    margin-bottom: 1.5rem;
+  }
+}
+
+/* Mobile menu enhancements */
+.mobile-menu-button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.mobile-menu {
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+/* Active state for mobile touch */
+.touch .active-touch {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Fix for iOS vh units */
+.is-ios .min-h-screen {
+  min-height: calc(var(--app-height, 100vh));
+}
+
+/* Improved mobile form elements */
+@media (max-width: 640px) {
+  input,
+  select,
+  textarea {
+    margin-bottom: 1rem;
+  }
+
+  .form-group {
+    margin-bottom: 1.25rem;
+  }
+}
+
+/* Mobile-friendly animations */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
