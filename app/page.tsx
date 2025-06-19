@@ -1,11 +1,11 @@
 "use client"
 
 import type React from "react"
-
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { CheckCircle } from "lucide-react"
+import { PolicyPilotsLogo } from "@/components/policy-pilots-logo"
 
 export default function ComingSoonPage() {
   const [email, setEmail] = useState("")
@@ -29,12 +29,12 @@ export default function ComingSoonPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center p-4">
       <div className="max-w-2xl mx-auto text-center">
-        {/* Logo */}
+        {/* SVG Logo */}
         <div className="mb-8 animate-fade-in">
-          <img
-            src="/policy-pilots-logo.png"
-            alt="Policy Pilots - AI Insurance App"
-            className="mx-auto w-full max-w-md h-auto drop-shadow-lg hover:drop-shadow-xl transition-all duration-300"
+          <PolicyPilotsLogo
+            width={500}
+            height={350}
+            className="mx-auto drop-shadow-lg hover:drop-shadow-xl transition-all duration-300 hover:scale-105"
           />
         </div>
 
