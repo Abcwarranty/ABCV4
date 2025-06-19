@@ -2,19 +2,6 @@
   "name": "architects-certificate-wordpress-theme",
   "version": "1.0.0",
   "description": "Professional WordPress theme for architect certification services",
-  "main": "index.php",
-  "scripts": {
-    "dev": "npm run watch",
-    "build": "npm run build:css && npm run build:js",
-    "build:css": "tailwindcss -i ./assets/css/src/main.css -o ./assets/css/dist/main.css --minify",
-    "build:js": "webpack --mode=production",
-    "watch": "npm run watch:css & npm run watch:js",
-    "watch:css": "tailwindcss -i ./assets/css/src/main.css -o ./assets/css/dist/main.css --watch",
-    "watch:js": "webpack --mode=development --watch",
-    "lint": "eslint assets/js/",
-    "lint:fix": "eslint assets/js/ --fix",
-    "zip": "zip -r architects-certificate-theme.zip . -x node_modules/\\* .git/\\* *.zip"
-  },
   "keywords": [
     "wordpress",
     "theme",
@@ -23,8 +10,44 @@
     "professional",
     "responsive"
   ],
-  "author": "ABC Warranty",
+  "homepage": "https://github.com/yourusername/architects-certificate-wordpress-theme#readme",
+  "bugs": {
+    "url": "https://github.com/yourusername/architects-certificate-wordpress-theme/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/architects-certificate-wordpress-theme.git"
+  },
   "license": "GPL-2.0-or-later",
+  "author": "ABC Warranty",
+  "main": "index.php",
+  "scripts": {
+    "build": "npm run build:css && npm run build:js",
+    "build:css": "tailwindcss -i ./assets/css/src/main.css -o ./assets/css/dist/main.css --minify",
+    "build:js": "webpack --mode=production",
+    "dev": "npm run watch",
+    "lint": "eslint assets/js/",
+    "lint:fix": "eslint assets/js/ --fix",
+    "watch": "npm run watch:css & npm run watch:js",
+    "watch:css": "tailwindcss -i ./assets/css/src/main.css -o ./assets/css/dist/main.css --watch",
+    "watch:js": "webpack --mode=development --watch",
+    "zip": "zip -r architects-certificate-theme.zip . -x node_modules/\\* .git/\\* *.zip"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ],
+  "dependencies": {
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.454.0",
+    "next": "15.2.4",
+    "react": "^19",
+    "react-dom": "^19",
+    "tailwind-merge": "^2.5.5",
+    "tailwindcss-animate": "^1.0.7"
+  },
   "devDependencies": {
     "@tailwindcss/forms": "^0.5.3",
     "@tailwindcss/typography": "^0.5.9",
@@ -38,28 +61,5 @@
     "typescript": "^5",
     "webpack": "^5.88.0",
     "webpack-cli": "^5.1.4"
-  },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not dead"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/yourusername/architects-certificate-wordpress-theme.git"
-  },
-  "bugs": {
-    "url": "https://github.com/yourusername/architects-certificate-wordpress-theme/issues"
-  },
-  "homepage": "https://github.com/yourusername/architects-certificate-wordpress-theme#readme",
-  "dependencies": {
-    "class-variance-authority": "^0.7.1",
-    "clsx": "^2.1.1",
-    "lucide-react": "^0.454.0",
-    "next": "15.2.4",
-    "react": "^19",
-    "react-dom": "^19",
-    "tailwind-merge": "^2.5.5",
-    "tailwindcss-animate": "^1.0.7"
   }
 }

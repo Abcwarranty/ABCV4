@@ -1,449 +1,403 @@
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Separator } from "@/components/ui/separator"
-import { Phone, Mail, MapPin, Clock, CheckCircle, Award, FileText, Shield, Star } from "lucide-react"
+"use client"
 
-export default function HomePage() {
+import { useState, useEffect } from "react"
+import { ChevronDown, Plane, Shield, Zap, Bell, Users, CheckCircle, Menu, X } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+
+export default function PolicyPilotsLanding() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [activeAccordion, setActiveAccordion] = useState<number | null>(null)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("animate-fade-in-up")
+          }
+        })
+      },
+      { threshold: 0.1 },
+    )
+
+    const elements = document.querySelectorAll(".fade-in-on-scroll")
+    elements.forEach((el) => observer.observe(el))
+
+    return () => observer.disconnect()
+  }, [])
+
+  const toggleAccordion = (index: number) => {
+    setActiveAccordion(activeAccordion === index ? null : index)
+  }
+
   return (
-    <div className="min-h-screen bg-white">
-      {/* Header */}
-      <header className="bg-white border-b shadow-sm">
-        <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between h-16">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
+      {/* Navigation */}
+      <nav className="fixed top-0 w-full bg-white/80 backdrop-blur-md border-b border-gray-100 z-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16">
             <div className="flex items-center space-x-3">
-              <div className="flex items-center space-x-3">
-                <img src="/abc-logo.png" alt="ABC Warranty Logo" className="h-12 w-auto" />
+              <div className="w-10 h-10 bg-gradient-to-br from-sky-400 to-teal-500 rounded-xl flex items-center justify-center">
+                <Plane className="w-6 h-6 text-white transform rotate-45" />
               </div>
+              <span className="text-xl font-bold text-gray-900">Policy Pilots</span>
             </div>
-            <nav className="hidden md:flex items-center space-x-8">
-              <Link href="#" className="text-gray-700 hover:text-blue-600 font-medium">
-                Home
-              </Link>
-              <Link href="#" className="text-gray-700 hover:text-blue-600 font-medium">
-                Services
-              </Link>
-              <Link href="#" className="text-gray-700 hover:text-blue-600 font-medium">
-                About
-              </Link>
-              <Link href="#" className="text-gray-700 hover:text-blue-600 font-medium">
-                Contact
-              </Link>
-            </nav>
-            <div className="flex items-center space-x-4">
-              <div className="hidden lg:flex items-center space-x-2 text-sm text-gray-600">
-                <Phone className="w-4 h-4" />
-                <span>0800 123 4567</span>
-              </div>
-              <Button>Get Quote</Button>
+
+            <div className="hidden md:flex items-center space-x-8">
+              <a href="#features" className="text-gray-600 hover:text-sky-600 transition-colors">
+                Features
+              </a>
+              <a href="#how-it-works" className="text-gray-600 hover:text-sky-600 transition-colors">
+                How It Works
+              </a>
+              <a href="#faq" className="text-gray-600 hover:text-sky-600 transition-colors">
+                FAQ
+              </a>
+              <Button className="bg-sky-500 hover:bg-sky-600 text-white">Get Started</Button>
             </div>
+
+            <button className="md:hidden p-2" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+              {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
           </div>
         </div>
-      </header>
+
+        {/* Mobile Menu */}
+        {isMenuOpen && (
+          <div className="md:hidden bg-white border-t border-gray-100">
+            <div className="px-4 py-4 space-y-4">
+              <a href="#features" className="block text-gray-600 hover:text-sky-600">
+                Features
+              </a>
+              <a href="#how-it-works" className="block text-gray-600 hover:text-sky-600">
+                How It Works
+              </a>
+              <a href="#faq" className="block text-gray-600 hover:text-sky-600">
+                FAQ
+              </a>
+              <Button className="w-full bg-sky-500 hover:bg-sky-600 text-white">Get Started</Button>
+            </div>
+          </div>
+        )}
+      </nav>
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-blue-50 to-indigo-100 py-20">
-        <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <Badge className="mb-4 bg-blue-100 text-blue-800 hover:bg-blue-100">Professional Certification</Badge>
-              <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
-                Architect's Certificate Services in the UK
-              </h1>
-              <p className="text-xl text-gray-600 mb-8">
-                Get your professional architect's certificate quickly and efficiently. We provide comprehensive
-                certification services for architects across the United Kingdom.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button size="lg" variant="outline">
-                  Learn More
-                </Button>
-              </div>
-              <div className="flex items-center space-x-6 mt-8">
-                <div className="flex items-center space-x-2">
-                  <CheckCircle className="w-5 h-5 text-green-600" />
-                  <span className="text-sm text-gray-600">Fast Processing</span>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <CheckCircle className="w-5 h-5 text-green-600" />
-                  <span className="text-sm text-gray-600">UK Certified</span>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <CheckCircle className="w-5 h-5 text-green-600" />
-                  <span className="text-sm text-gray-600">Professional Support</span>
-                </div>
-              </div>
-            </div>
-            <div className="relative">
-              <div className="bg-white rounded-2xl shadow-2xl p-8">
-                <div className="text-center mb-6">
-                  <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <FileText className="w-8 h-8 text-blue-600" />
-                  </div>
-                  <h3 className="text-2xl font-bold text-gray-900">Quick Application</h3>
-                  <p className="text-gray-600">Get certified in 3 simple steps</p>
-                </div>
-                <div className="space-y-4">
-                  <div className="flex items-center space-x-3">
-                    <div className="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-bold">
-                      1
-                    </div>
-                    <span className="text-gray-700">Submit Application</span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <div className="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-bold">
-                      2
-                    </div>
-                    <span className="text-gray-700">Document Review</span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <div className="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-bold">
-                      3
-                    </div>
-                    <span className="text-gray-700">Receive Certificate</span>
-                  </div>
-                </div>
-                <div className="mt-6 text-center">
-                  <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white w-full">
-                    Apply Now
-                  </Button>
-                </div>
-              </div>
+      <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto text-center">
+          <div className="fade-in-on-scroll">
+            <Badge className="mb-6 bg-sky-100 text-sky-700 hover:bg-sky-100">AI-Powered Insurance Intelligence</Badge>
+            <h1 className="text-5xl md:text-7xl font-bold text-gray-900 mb-6 leading-tight">
+              Your AI Co-Pilot for{" "}
+              <span className="bg-gradient-to-r from-sky-500 to-teal-500 bg-clip-text text-transparent">
+                Smarter Insurance
+              </span>
+            </h1>
+            <p className="text-xl md:text-2xl text-gray-600 mb-10 max-w-3xl mx-auto leading-relaxed">
+              Compare quotes, switch smart, and save — all on autopilot.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <Button size="lg" className="bg-sky-500 hover:bg-sky-600 text-white px-8 py-4 text-lg">
+                Find My Best Quote
+              </Button>
+              <Button size="lg" variant="outline" className="border-gray-300 text-gray-700 px-8 py-4 text-lg">
+                Watch Demo
+              </Button>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Services Section */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">Our Certification Services</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              We offer comprehensive architect certification services to help you advance your career and meet
-              professional requirements in the UK.
+      {/* How It Works */}
+      <section id="how-it-works" className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16 fade-in-on-scroll">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">How It Works</h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">Three simple steps to smarter insurance decisions</p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              {
+                step: "01",
+                title: "Tell us what you need",
+                description: "Share your insurance requirements and current coverage details in just a few clicks.",
+                icon: <Users className="w-8 h-8" />,
+              },
+              {
+                step: "02",
+                title: "Let AI compare policies",
+                description: "Our AI analyzes thousands of policies across top insurers to find your perfect match.",
+                icon: <Zap className="w-8 h-8" />,
+              },
+              {
+                step: "03",
+                title: "Get alerts to switch & save",
+                description: "Receive notifications when better deals become available and switch seamlessly.",
+                icon: <Bell className="w-8 h-8" />,
+              },
+            ].map((item, index) => (
+              <Card
+                key={index}
+                className="fade-in-on-scroll border-0 shadow-lg hover:shadow-xl transition-all duration-300 group"
+              >
+                <CardContent className="p-8 text-center">
+                  <div className="w-16 h-16 bg-gradient-to-br from-sky-400 to-teal-500 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <div className="text-white">{item.icon}</div>
+                  </div>
+                  <div className="text-sm font-bold text-sky-500 mb-2">STEP {item.step}</div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-4">{item.title}</h3>
+                  <p className="text-gray-600 leading-relaxed">{item.description}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Features */}
+      <section id="features" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-50 to-blue-50">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16 fade-in-on-scroll">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">Why Choose Policy Pilots</h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Advanced AI technology meets human-friendly insurance management
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <Card className="border-2 hover:border-blue-200 transition-colors">
-              <CardHeader>
-                <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
-                  <Award className="w-6 h-6 text-blue-600" />
-                </div>
-                <CardTitle>Professional Registration</CardTitle>
-                <CardDescription>
-                  Complete registration process for qualified architects seeking professional status.
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-2 text-sm text-gray-600">
-                  <li className="flex items-center space-x-2">
-                    <CheckCircle className="w-4 h-4 text-green-600" />
-                    <span>ARB Registration</span>
-                  </li>
-                  <li className="flex items-center space-x-2">
-                    <CheckCircle className="w-4 h-4 text-green-600" />
-                    <span>RIBA Membership</span>
-                  </li>
-                  <li className="flex items-center space-x-2">
-                    <CheckCircle className="w-4 h-4 text-green-600" />
-                    <span>Professional Indemnity</span>
-                  </li>
-                </ul>
-              </CardContent>
-            </Card>
-
-            <Card className="border-2 hover:border-blue-200 transition-colors">
-              <CardHeader>
-                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
-                  <FileText className="w-6 h-6 text-green-600" />
-                </div>
-                <CardTitle>Document Verification</CardTitle>
-                <CardDescription>
-                  Professional verification and authentication of architectural qualifications and experience.
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-2 text-sm text-gray-600">
-                  <li className="flex items-center space-x-2">
-                    <CheckCircle className="w-4 h-4 text-green-600" />
-                    <span>Qualification Verification</span>
-                  </li>
-                  <li className="flex items-center space-x-2">
-                    <CheckCircle className="w-4 h-4 text-green-600" />
-                    <span>Experience Assessment</span>
-                  </li>
-                  <li className="flex items-center space-x-2">
-                    <CheckCircle className="w-4 h-4 text-green-600" />
-                    <span>Portfolio Review</span>
-                  </li>
-                </ul>
-              </CardContent>
-            </Card>
-
-            <Card className="border-2 hover:border-blue-200 transition-colors">
-              <CardHeader>
-                <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
-                  <Shield className="w-6 h-6 text-purple-600" />
-                </div>
-                <CardTitle>Compliance Certification</CardTitle>
-                <CardDescription>
-                  Ensure your practice meets all UK regulatory requirements and building standards.
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-2 text-sm text-gray-600">
-                  <li className="flex items-center space-x-2">
-                    <CheckCircle className="w-4 h-4 text-green-600" />
-                    <span>Building Regulations</span>
-                  </li>
-                  <li className="flex items-center space-x-2">
-                    <CheckCircle className="w-4 h-4 text-green-600" />
-                    <span>Planning Permission</span>
-                  </li>
-                  <li className="flex items-center space-x-2">
-                    <CheckCircle className="w-4 h-4 text-green-600" />
-                    <span>Health & Safety</span>
-                  </li>
-                </ul>
-              </CardContent>
-            </Card>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              {
+                title: "Real-time Quote Tracking",
+                description: "Monitor price changes across all major insurers in real-time",
+                icon: <Zap className="w-6 h-6" />,
+              },
+              {
+                title: "Instant Comparison",
+                description: "Compare policies side-by-side with AI-powered insights",
+                icon: <Shield className="w-6 h-6" />,
+              },
+              {
+                title: "Cancel & Switch Support",
+                description: "We handle the paperwork when you switch providers",
+                icon: <CheckCircle className="w-6 h-6" />,
+              },
+              {
+                title: "Multi-Policy Coverage",
+                description: "Works with home, auto, and life insurance policies",
+                icon: <Users className="w-6 h-6" />,
+              },
+            ].map((feature, index) => (
+              <Card
+                key={index}
+                className="fade-in-on-scroll border-0 shadow-md hover:shadow-lg transition-all duration-300 group"
+              >
+                <CardContent className="p-6">
+                  <div className="w-12 h-12 bg-gradient-to-br from-sky-400 to-teal-500 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                    <div className="text-white">{feature.icon}</div>
+                  </div>
+                  <h3 className="text-lg font-bold text-gray-900 mb-2">{feature.title}</h3>
+                  <p className="text-gray-600 text-sm leading-relaxed">{feature.description}</p>
+                </CardContent>
+              </Card>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="py-16 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="text-center">
-              <div className="text-4xl font-bold text-blue-600 mb-2">500+</div>
-              <div className="text-gray-600">Certified Architects</div>
-            </div>
-            <div className="text-center">
-              <div className="text-4xl font-bold text-blue-600 mb-2">15+</div>
-              <div className="text-gray-600">Years Experience</div>
-            </div>
-            <div className="text-center">
-              <div className="text-4xl font-bold text-blue-600 mb-2">98%</div>
-              <div className="text-gray-600">Success Rate</div>
-            </div>
-            <div className="text-center">
-              <div className="text-4xl font-bold text-blue-600 mb-2">24/7</div>
-              <div className="text-gray-600">Support Available</div>
-            </div>
+      {/* Social Proof */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+        <div className="max-w-7xl mx-auto text-center fade-in-on-scroll">
+          <h3 className="text-2xl font-bold text-gray-900 mb-8">Trusted by thousands of smart savers</h3>
+          <div className="flex flex-wrap justify-center items-center gap-8 opacity-60">
+            {["Allstate", "State Farm", "GEICO", "Progressive", "Liberty Mutual"].map((company, index) => (
+              <div key={index} className="text-2xl font-bold text-gray-400">
+                {company}
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Testimonials */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">What Our Clients Say</h2>
-            <p className="text-xl text-gray-600">Trusted by architects across the United Kingdom</p>
+      {/* FAQ */}
+      <section id="faq" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-50 to-blue-50">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-16 fade-in-on-scroll">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">Frequently Asked Questions</h2>
+            <p className="text-xl text-gray-600">Everything you need to know about Policy Pilots</p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <Card>
-              <CardContent className="pt-6">
-                <div className="flex items-center mb-4">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 text-yellow-400 fill-current" />
-                  ))}
-                </div>
-                <p className="text-gray-600 mb-4">
-                  "Excellent service and very professional. They helped me get my architect's certificate quickly and
-                  efficiently. Highly recommended!"
-                </p>
-                <div className="flex items-center space-x-3">
-                  <div className="w-10 h-10 bg-gray-200 rounded-full"></div>
-                  <div>
-                    <div className="font-semibold text-gray-900">Sarah Johnson</div>
-                    <div className="text-sm text-gray-600">Chartered Architect</div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardContent className="pt-6">
-                <div className="flex items-center mb-4">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 text-yellow-400 fill-current" />
-                  ))}
-                </div>
-                <p className="text-gray-600 mb-4">
-                  "The team was incredibly helpful throughout the entire process. Professional, knowledgeable, and
-                  efficient service."
-                </p>
-                <div className="flex items-center space-x-3">
-                  <div className="w-10 h-10 bg-gray-200 rounded-full"></div>
-                  <div>
-                    <div className="font-semibold text-gray-900">Michael Brown</div>
-                    <div className="text-sm text-gray-600">Senior Architect</div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardContent className="pt-6">
-                <div className="flex items-center mb-4">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 text-yellow-400 fill-current" />
-                  ))}
-                </div>
-                <p className="text-gray-600 mb-4">
-                  "Fast, reliable, and professional service. They made the certification process straightforward and
-                  stress-free."
-                </p>
-                <div className="flex items-center space-x-3">
-                  <div className="w-10 h-10 bg-gray-200 rounded-full"></div>
-                  <div>
-                    <div className="font-semibold text-gray-900">Emma Wilson</div>
-                    <div className="text-sm text-gray-600">Practice Director</div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+          <div className="space-y-4 fade-in-on-scroll">
+            {[
+              {
+                question: "How does Policy Pilots compare quotes?",
+                answer:
+                  "Our AI technology connects with major insurance providers to gather real-time quotes based on your specific needs and profile. We analyze coverage options, deductibles, and pricing to find the best match for you.",
+              },
+              {
+                question: "Is it really free to use?",
+                answer:
+                  "Yes! Policy Pilots is completely free for consumers. We earn a small commission from insurance providers when you choose to switch, but this never affects the quotes or recommendations you receive.",
+              },
+              {
+                question: "Will I need to cancel my current policy?",
+                answer:
+                  "Not necessarily! We help you understand when it makes sense to switch and can assist with the cancellation process if you decide to move to a better policy. We handle all the paperwork for you.",
+              },
+              {
+                question: "How often do you check for better deals?",
+                answer:
+                  "Our AI monitors the market continuously, checking for better deals daily. You'll receive notifications only when we find significantly better options that could save you money.",
+              },
+            ].map((faq, index) => (
+              <Card key={index} className="border-0 shadow-md">
+                <CardContent className="p-0">
+                  <button
+                    className="w-full p-6 text-left flex justify-between items-center hover:bg-gray-50 transition-colors"
+                    onClick={() => toggleAccordion(index)}
+                  >
+                    <span className="text-lg font-semibold text-gray-900">{faq.question}</span>
+                    <ChevronDown
+                      className={`w-5 h-5 text-gray-500 transition-transform ${
+                        activeAccordion === index ? "rotate-180" : ""
+                      }`}
+                    />
+                  </button>
+                  {activeAccordion === index && (
+                    <div className="px-6 pb-6">
+                      <p className="text-gray-600 leading-relaxed">{faq.answer}</p>
+                    </div>
+                  )}
+                </CardContent>
+              </Card>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 bg-blue-600">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4">Ready to Get Your Architect's Certificate?</h2>
-          <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-            Join hundreds of certified architects who trust our professional services. Start your application today and
-            advance your career.
+      {/* Final CTA */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-sky-500 to-teal-500">
+        <div className="max-w-4xl mx-auto text-center fade-in-on-scroll">
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">Start Saving Today</h2>
+          <p className="text-xl text-sky-100 mb-10 max-w-2xl mx-auto">
+            Join thousands of smart savers who trust Policy Pilots to find their best insurance deals.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button
-              size="lg"
-              className="border-2 border-white text-white bg-transparent hover:bg-white hover:text-blue-600 transition-colors"
-            >
-              Start Application
+            <Button size="lg" className="bg-white text-sky-600 hover:bg-gray-100 px-8 py-4 text-lg">
+              Get My Free Quote
             </Button>
             <Button
               size="lg"
-              className="border-2 border-white text-white bg-transparent hover:bg-white hover:text-blue-600 transition-colors"
+              variant="outline"
+              className="border-white text-white hover:bg-white hover:text-sky-600 px-8 py-4 text-lg"
             >
-              Contact Us
+              Learn More
             </Button>
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-white py-16">
-        <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <footer className="bg-gray-900 text-white py-16 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid md:grid-cols-4 gap-8 mb-8">
             <div>
-              <div className="flex items-center space-x-2 mb-4">
-                <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-                  <Award className="w-5 h-5 text-white" />
+              <div className="flex items-center space-x-3 mb-4">
+                <div className="w-10 h-10 bg-gradient-to-br from-sky-400 to-teal-500 rounded-xl flex items-center justify-center">
+                  <Plane className="w-6 h-6 text-white transform rotate-45" />
                 </div>
-                <span className="text-xl font-bold">Architects Certificate</span>
+                <span className="text-xl font-bold">Policy Pilots</span>
               </div>
-              <p className="text-gray-400 mb-4">
-                Professional architect certification services across the United Kingdom. Trusted by architects
-                nationwide.
-              </p>
-              <div className="flex items-center space-x-2 text-gray-400">
-                <Phone className="w-4 h-4" />
-                <span>0800 123 4567</span>
-              </div>
+              <p className="text-gray-400 leading-relaxed">Your AI co-pilot for smarter insurance decisions.</p>
             </div>
 
             <div>
-              <h3 className="text-lg font-semibold mb-4">Services</h3>
+              <h4 className="font-semibold mb-4">Product</h4>
               <ul className="space-y-2 text-gray-400">
                 <li>
-                  <Link href="#" className="hover:text-white">
-                    Professional Registration
-                  </Link>
+                  <a href="#" className="hover:text-white transition-colors">
+                    Features
+                  </a>
                 </li>
                 <li>
-                  <Link href="#" className="hover:text-white">
-                    Document Verification
-                  </Link>
+                  <a href="#" className="hover:text-white transition-colors">
+                    How It Works
+                  </a>
                 </li>
                 <li>
-                  <Link href="#" className="hover:text-white">
-                    Compliance Certification
-                  </Link>
+                  <a href="#" className="hover:text-white transition-colors">
+                    Pricing
+                  </a>
                 </li>
                 <li>
-                  <Link href="#" className="hover:text-white">
-                    Portfolio Review
-                  </Link>
+                  <a href="#" className="hover:text-white transition-colors">
+                    API
+                  </a>
                 </li>
               </ul>
             </div>
 
             <div>
-              <h3 className="text-lg font-semibold mb-4">Company</h3>
+              <h4 className="font-semibold mb-4">Company</h4>
               <ul className="space-y-2 text-gray-400">
                 <li>
-                  <Link href="#" className="hover:text-white">
-                    About Us
-                  </Link>
+                  <a href="#" className="hover:text-white transition-colors">
+                    About
+                  </a>
                 </li>
                 <li>
-                  <Link href="#" className="hover:text-white">
-                    Our Team
-                  </Link>
+                  <a href="#" className="hover:text-white transition-colors">
+                    Blog
+                  </a>
                 </li>
                 <li>
-                  <Link href="#" className="hover:text-white">
+                  <a href="#" className="hover:text-white transition-colors">
                     Careers
-                  </Link>
+                  </a>
                 </li>
                 <li>
-                  <Link href="#" className="hover:text-white">
-                    News
-                  </Link>
+                  <a href="#" className="hover:text-white transition-colors">
+                    Contact
+                  </a>
                 </li>
               </ul>
             </div>
 
             <div>
-              <h3 className="text-lg font-semibold mb-4">Contact</h3>
-              <div className="space-y-3 text-gray-400">
-                <div className="flex items-center space-x-2">
-                  <MapPin className="w-4 h-4" />
-                  <span>London, United Kingdom</span>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <Mail className="w-4 h-4" />
-                  <span>info@architectscertificates.com</span>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <Clock className="w-4 h-4" />
-                  <span>Mon-Fri: 9AM-6PM</span>
-                </div>
-              </div>
+              <h4 className="font-semibold mb-4">Legal</h4>
+              <ul className="space-y-2 text-gray-400">
+                <li>
+                  <a href="#" className="hover:text-white transition-colors">
+                    Privacy Policy
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-white transition-colors">
+                    Terms of Service
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-white transition-colors">
+                    Cookie Policy
+                  </a>
+                </li>
+              </ul>
             </div>
           </div>
 
-          <Separator className="my-8 bg-gray-800" />
-
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-gray-400 text-sm">© 2024 Architects Certificate. All rights reserved.</p>
+          <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
+            <p className="text-gray-400 text-sm">© 2024 Policy Pilots. All rights reserved.</p>
             <div className="flex space-x-6 mt-4 md:mt-0">
-              <Link href="#" className="text-gray-400 hover:text-white text-sm">
-                Privacy Policy
-              </Link>
-              <Link href="#" className="text-gray-400 hover:text-white text-sm">
-                Terms of Service
-              </Link>
-              <Link href="#" className="text-gray-400 hover:text-white text-sm">
-                Cookie Policy
-              </Link>
+              <a href="#" className="text-gray-400 hover:text-white transition-colors">
+                Twitter
+              </a>
+              <a href="#" className="text-gray-400 hover:text-white transition-colors">
+                LinkedIn
+              </a>
+              <a href="#" className="text-gray-400 hover:text-white transition-colors">
+                GitHub
+              </a>
             </div>
           </div>
         </div>
