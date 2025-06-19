@@ -28,7 +28,7 @@ export default function ComingSoonPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50/30 to-slate-100 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-gray-200 via-gray-100 to-gray-200 flex items-center justify-center p-4">
       <div className="max-w-2xl mx-auto text-center space-y-12">
         {/* Logo */}
         <div className="animate-fade-in">
