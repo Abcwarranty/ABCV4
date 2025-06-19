@@ -1,14 +1,13 @@
 {
-  "name": "architects-certificate-wordpress-theme",
+  "name": "policy-pilots-coming-soon",
   "version": "1.0.0",
-  "description": "Professional WordPress theme for architect certification services",
+  "description": "WordPress coming soon theme for Policy Pilots",
   "keywords": [
     "wordpress",
     "theme",
-    "architecture",
-    "certification",
-    "professional",
-    "responsive"
+    "coming-soon",
+    "insurance",
+    "ai"
   ],
   "homepage": "https://github.com/yourusername/architects-certificate-wordpress-theme#readme",
   "bugs": {
@@ -19,7 +18,7 @@
     "url": "https://github.com/yourusername/architects-certificate-wordpress-theme.git"
   },
   "license": "GPL-2.0-or-later",
-  "author": "ABC Warranty",
+  "author": "Policy Pilots Team",
   "main": "index.php",
   "scripts": {
     "build": "npm run build:css && npm run build:js",
@@ -31,7 +30,7 @@
     "watch": "npm run watch:css & npm run watch:js",
     "watch:css": "tailwindcss -i ./assets/css/src/main.css -o ./assets/css/dist/main.css --watch",
     "watch:js": "webpack --mode=development --watch",
-    "zip": "zip -r architects-certificate-theme.zip . -x node_modules/\\* .git/\\* *.zip"
+    "zip": "zip -r policy-pilots-coming-soon.zip . -x node_modules/\\* .git/\\* *.zip"
   },
   "browserslist": [
     "> 1%",

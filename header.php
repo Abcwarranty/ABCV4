@@ -1,8 +1,8 @@
 <?php
 /**
- * The header for the Architects Certificate theme
+ * The header for Policy Pilots Coming Soon theme
  *
- * @package ArchitectsCertificate
+ * @package PolicyPilots
  * @version 1.0.0
  */
 
@@ -15,12 +15,13 @@ if (!defined('ABSPATH')) {
 <html <?php language_attributes(); ?>>
 <head>
     <meta charset="<?php bloginfo('charset'); ?>">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="format-detection" content="telephone=no">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="default">
-    <meta name="theme-color" content="#2563eb">
+    <meta name="theme-color" content="#3b82f6">
     <link rel="profile" href="https://gmpg.org/xfn/11">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="<?php echo esc_url(get_template_directory_uri() . '/assets/images/policy-pilots-logo.png'); ?>" as="image">
     
     <?php wp_head(); ?>
 </head>
@@ -29,7 +30,7 @@ if (!defined('ABSPATH')) {
 <?php wp_body_open(); ?>
 
 <div id="page" class="site">
-    <a class="skip-link sr-only" href="#main"><?php esc_html_e('Skip to content', 'architects-certificate'); ?></a>
+    <a class="skip-link sr-only" href="#main"><?php esc_html_e('Skip to content', 'policy-pilots'); ?></a>
 
     <!-- Header -->
     <header id="masthead" class="site-header bg-white border-b shadow-sm" role="banner">
