@@ -28,7 +28,7 @@ html {
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  background: linear-gradient(135deg, #e5e7eb, #f3f4f6);
+  background: #d5d8e0;
   color: #0f172a;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
@@ -473,6 +473,11 @@ body {
   width: 100%;
   max-width: none;
 }
+
+/* Add theme support for custom background */
+add_theme_support('custom-background', array(
+    'default-color' => 'd5d8e0',
+));
 
 /* Accessibility */
 .sr-only {
