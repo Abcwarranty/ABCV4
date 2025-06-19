@@ -54,7 +54,8 @@ function policy_pilots_setup() {
 
     // Add theme support for custom background
     add_theme_support('custom-background', array(
-        'default-color' => 'e5e7eb',
+        'default-color' => 'd5d8e0',
+        'default-image' => '',
     ));
 
     // Add support for responsive embedded content
@@ -359,4 +360,17 @@ function policy_pilots_body_classes($classes) {
     return $classes;
 }
 add_filter('body_class', 'policy_pilots_body_classes');
+
+/**
+ * Force background color
+ */
+function policy_pilots_force_background_color() {
+    echo '<style type="text/css">
+        html, body, .site, #page {
+            background: #d5d8e0 !important;
+            background-color: #d5d8e0 !important;
+        }
+    </style>';
+}
+add_action('wp_head', 'policy_pilots_force_background_color');
 ?>
