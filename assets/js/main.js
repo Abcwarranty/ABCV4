@@ -675,16 +675,19 @@ window.openApplicationForm = openApplicationForm
  * Utility functions
  */
 
+// Declare policy_pilots_ajax if not defined
+if (typeof policy_pilots_ajax === "undefined") {
+  var policy_pilots_ajax = {
+    ajax_url: "",
+    nonce: "",
+  }
+}
+
 // Smooth scroll polyfill for older browsers
 if (!("scrollBehavior" in document.documentElement.style)) {
   const script = document.createElement("script")
   script.src = "https://cdn.jsdelivr.net/gh/iamdustan/smoothscroll@master/src/smoothscroll.js"
   document.head.appendChild(script)
-}
-
-// Declare policy_pilots_ajax
-if (typeof policy_pilots_ajax === "undefined") {
-  var policy_pilots_ajax = {}
 }
 
 // Declare architects_certificate_ajax

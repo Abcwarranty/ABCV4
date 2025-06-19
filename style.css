@@ -13,9 +13,10 @@ Requires PHP: 7.4
 License: GPL v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Tags: coming-soon, business, insurance, ai, responsive, custom-logo, one-column, featured-images, translation-ready
-*/
-  /* Reset and Base Styles */
-  * {
+*/ ?>
+
+/* Reset and Base Styles */
+* {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -413,6 +414,13 @@ body {
   width: 100vw;
   max-width: 100vw;
   margin-left: calc(50% - 50vw);
+}
+
+/* Custom logo styling */
+.custom-logo {
+  height: auto;
+  width: 100%;
+  max-width: none;
 }
 
 /* Accessibility */
