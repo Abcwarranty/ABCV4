@@ -1,7 +1,6 @@
 "use client"
 
 import type React from "react"
-
 import { useState } from "react"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
@@ -28,11 +27,11 @@ export default function ComingSoonPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-200 via-gray-100 to-gray-200 flex items-center justify-center p-4">
-      <div className="max-w-2xl mx-auto text-center space-y-12">
+    <div className="min-h-screen bg-[#d5d8e0] flex items-center justify-center p-4 overflow-hidden">
+      <div className="max-w-2xl mx-auto text-center space-y-8">
         {/* Logo */}
         <div className="animate-fade-in">
-          <div className="relative w-80 h-80 mx-auto mb-8 md:w-96 md:h-96">
+          <div className="relative w-80 h-80 mx-auto mb-6 md:w-96 md:h-96">
             <Image
               src="/policy-pilots-logo.png"
               alt="Policy Pilots Logo"
@@ -44,9 +43,9 @@ export default function ComingSoonPage() {
         </div>
 
         {/* Coming Soon Text */}
-        <div className="space-y-6 animate-fade-in-delay">
-          <h1 className="text-5xl md:text-7xl font-bold text-slate-800 tracking-tight">Coming Soon</h1>
-          <p className="text-xl md:text-2xl text-slate-600 max-w-lg mx-auto leading-relaxed">
+        <div className="space-y-4 animate-fade-in-delay">
+          <h1 className="text-4xl md:text-6xl font-bold text-slate-800 tracking-tight">Coming Soon</h1>
+          <p className="text-lg md:text-xl text-slate-600 max-w-lg mx-auto leading-relaxed">
             Your AI co-pilot for smarter insurance decisions is preparing for takeoff
           </p>
         </div>
@@ -114,6 +113,13 @@ export default function ComingSoonPage() {
         <div className="absolute top-3/4 right-1/4 w-3 h-3 bg-slate-300/40 rounded-full animate-float-delay" />
         <div className="absolute top-1/2 right-1/3 w-1 h-1 bg-blue-400/40 rounded-full animate-float-slow" />
       </div>
+
+      {/* Footer */}
+      <footer className="absolute bottom-0 left-0 right-0 bg-white/90 backdrop-blur-sm border-t border-black/10 py-2">
+        <div className="text-center">
+          <p className="text-sm text-slate-500">© 2025 Policy Pilots. All rights reserved.</p>
+        </div>
+      </footer>
     </div>
   )
 }

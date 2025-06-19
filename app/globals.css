@@ -4,8 +4,8 @@
 
 :root {
   --foreground-rgb: 15, 23, 42;
-  --background-start-rgb: 229, 231, 235;
-  --background-end-rgb: 243, 244, 246;
+  --background-start-rgb: 213, 216, 224;
+  --background-end-rgb: 213, 216, 224;
 }
 
 * {
@@ -16,14 +16,18 @@
 
 html {
   scroll-behavior: smooth;
+  height: 100%;
+  overflow: hidden;
 }
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(135deg, #e5e7eb, #f3f4f6);
+  background: #d5d8e0;
   font-family: var(--font-inter);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  height: 100vh;
+  overflow: hidden;
 }
 
 /* Custom animations */
@@ -166,13 +170,13 @@ input {
 
 /* Mobile optimizations */
 @media (max-width: 640px) {
-  .text-5xl {
-    font-size: 3rem;
+  .text-4xl {
+    font-size: 2rem;
     line-height: 1;
   }
 
-  .text-7xl {
-    font-size: 4rem;
+  .text-6xl {
+    font-size: 3rem;
     line-height: 1;
   }
 }
