@@ -4,8 +4,8 @@
 
 :root {
   --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --background-start-rgb: 249, 250, 251;
+  --background-end-rgb: 243, 244, 246;
 }
 
 * {
@@ -22,14 +22,15 @@ body {
   font-family:
     ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
+  background: linear-gradient(to bottom right, rgb(var(--background-start-rgb)), rgb(var(--background-end-rgb)));
+  min-height: 100vh;
 }
 
 /* Custom animations */
-@keyframes fadeInUp {
+@keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(20px);
   }
   to {
     opacity: 1;
@@ -37,25 +38,56 @@ body {
   }
 }
 
-.animate-fade-in-up {
-  animation: fadeInUp 0.6s ease-out forwards;
+@keyframes fadeInDelay {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.fade-in-on-scroll {
+@keyframes fadeInDelay2 {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDelay3 {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+.animate-fade-in-delay {
+  animation: fadeInDelay 0.8s ease-out 0.2s forwards;
   opacity: 0;
-  transform: translateY(30px);
-  transition: all 0.6s ease-out;
 }
 
-.fade-in-on-scroll.animate-fade-in-up {
-  opacity: 1;
-  transform: translateY(0);
+.animate-fade-in-delay-2 {
+  animation: fadeInDelay2 0.8s ease-out 0.4s forwards;
+  opacity: 0;
 }
 
-/* Smooth gradient text */
-.bg-clip-text {
-  -webkit-background-clip: text;
-  background-clip: text;
+.animate-fade-in-delay-3 {
+  animation: fadeInDelay3 0.8s ease-out 0.6s forwards;
+  opacity: 0;
 }
 
 /* Custom scrollbar */
@@ -76,55 +108,43 @@ body {
   background: #94a3b8;
 }
 
-/* Button hover effects */
-.button-hover-effect {
-  transition: all 0.3s ease;
-}
-
-.button-hover-effect:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-}
-
-/* Card hover effects */
-.card-hover {
-  transition: all 0.3s ease;
-}
-
-.card-hover:hover {
-  transform: translateY(-5px);
-}
-
-/* Backdrop blur support */
-.backdrop-blur-md {
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-}
-
-/* Mobile optimizations */
-@media (max-width: 768px) {
-  .text-5xl {
-    font-size: 2.5rem;
-  }
-
-  .text-7xl {
-    font-size: 3rem;
-  }
-
-  .text-4xl {
-    font-size: 2rem;
-  }
-}
-
 /* Focus states for accessibility */
 button:focus,
-a:focus {
-  outline: 2px solid #0ea5e9;
+input:focus {
+  outline: 2px solid #3b82f6;
   outline-offset: 2px;
 }
 
 /* Smooth transitions for all interactive elements */
 a,
-button {
+button,
+input {
   transition: all 0.2s ease;
+}
+
+/* Mobile optimizations */
+@media (max-width: 640px) {
+  .text-4xl {
+    font-size: 2.25rem;
+  }
+
+  .text-6xl {
+    font-size: 3rem;
+  }
+}
+
+/* Hover effects */
+img {
+  transition: all 0.3s ease;
+}
+
+/* Loading spinner */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
 }
